@@ -2,4 +2,4 @@
 
 # goit-react-hw-02-feedback
 
-Feedback Widget is created like a React Class-Component `
+Feedback Widget is created using a React Class Component
