@@ -1,22 +1,33 @@
+import Box from 'components/Box';
 import PropTypes from 'prop-types';
+import { Button } from './FeedbackOptions.styled';
 
-export function FeedbackOptions({ options, onLeaveFeedback }) {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <div>
-      {options.map(optionBtn => (
-        <button
+    <Box display="flex" justifyContent="center" as="div">
+      {options.map(({ label, icon: Icon }) => (
+        <Button
           type="button"
-          key={optionBtn}
-          onClick={() => onLeaveFeedback({ optionBtn })}
+          key={label}
+          onClick={() => onLeaveFeedback({ label })}
+          label={label}
         >
-          {optionBtn}
-        </button>
+          <Icon size="20" />
+          {label}
+        </Button>
       ))}
-    </div>
+    </Box>
   );
-}
+};
+
+export default FeedbackOptions;
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string),
-  onLeaveFeedback: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      icon: PropTypes.any,
+    }).isRequired
+  ).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
